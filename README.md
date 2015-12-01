@@ -35,7 +35,7 @@ Rows are the genes and columns are the cells.
 Currently the program only takes csv files or tab delimited file.
 The input file will be treated as a tab delimited file if the suffix is not '.csv'.
 
-An example input file example_sc_data could be found at https://github.com/lengning/SCPattern/tree/master/example_data/   
+An example input file *example_sc_data* could be found at https://github.com/lengning/SCPattern/tree/master/example_data/   
 - This file contains 1000 genes and 300 cells
 
 The second input file is the condition vector. It could be csv or tab delimited file. The file should contain
