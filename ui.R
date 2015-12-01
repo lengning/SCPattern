@@ -6,7 +6,7 @@ options(shiny.maxRequestSize=500*1024^2)
 shinyUI(pageWithSidebar(
 
   #  Application title
-  headerPanel("Multiple condition analysis"),
+  headerPanel("SCPattern"),
 
   # Sidebar with sliders that demonstrate various available options
   sidebarPanel(width=9,
