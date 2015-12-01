@@ -25,6 +25,9 @@ In R, run:
 
 > runGitHub("lengning/SCPattern")
 
+![Screenshot](https://github.com/lengning/SCPattern/figs/SCPattern_screenshot.png)
+
+
 ## Input files
 
 The first input file should be the expression matrix. 
