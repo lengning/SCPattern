@@ -25,7 +25,7 @@ In R, run:
 
 > runGitHub("lengning/SCPattern")
 
-![Screenshot](https://github.com/lengning/SCPattern/figs/SCPattern_screenshot.png)
+![Screenshot](https://github.com/lengning/SCPattern/blob/master/figs/SCPattern_screenshot.png)
 
 
 ## Input files
