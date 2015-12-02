@@ -93,15 +93,17 @@ shinyServer(function(input, output, session) {
 				 Dropout.remove=List$RMTF, Dropout.upper=List$Dropupper, LOD=List$LOD,
 				 NumPat=NumPat, Directional=Directional)	
   	print("writting output...")
-		browser()
+		
+		#browser()
 	
 		levs <- levels(List$Cond)
 		nlevs <- nlevels(List$Cond)
 		if(nlevs==2){
 		PPmat <- Res$PP
-		AllEE <- NA
-		if("NC"%in%colnames(PPmat))AllEE <- "NC"
-		if("EE"%in%colnames(PPmat))AllEE <- "EE"
+		
+		#if("NC"%in%colnames(PPmat))
+		AllEE <- "NC"
+		#if("EE"%in%colnames(PPmat))AllEE <- "EE"
 		names(Res$MAP)=names(Res$maxPP)=rownames(Res$PP)
 		NotEE <- names(Res$MAP)[which(Res$MAP!=AllEE)]
 		NotEE.s <- names(sort(Res$maxPP[NotEE], decreasing=T))
