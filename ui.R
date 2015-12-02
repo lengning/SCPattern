@@ -25,15 +25,15 @@ shinyUI(pageWithSidebar(
 							value = 5),
 
 				# Normalization
-				checkboxGroupInput("test_buttons",
+				radioButtons("test_buttons",
 						label = "test between",
 					choices = list("DE vs. EE (undirectional)" = 1,
 							"Up vs. Down vs. EE" = 2,
 							"Up vs. Down vs. EE vs. Both direction"=3,
 							"Up vs. Down"=4),
 								selected = 2),								
-				# Remove or impute
-					checkboxGroupInput("RM_buttons",
+
+				radioButtons("RM_buttons",
 						label = "Ignor dropouts?",
 						 choices = list("Ignore" = 1,
 									 "Do not ignore" = 2),
@@ -50,7 +50,7 @@ shinyUI(pageWithSidebar(
 				label = "Lower limit of detection (max value)",
 										value = 10),
 
-				checkboxGroupInput("Circular",
+				radioButtons("Circular",
 				label = "Circular?",
 				 choices = list("Yes" = 1,
 							 "No" = 2),
@@ -81,24 +81,24 @@ shinyUI(pageWithSidebar(
 	),
 
 	column(3,
-		    checkboxGroupInput("Plot_buttons",
+		    radioButtons("Plot_buttons",
 		    label = "Plot top genes?",
 				 choices = list("Yes" = 1,
 					        "No" = 2),
 					         selected = 1),								
 		
-		    checkboxGroupInput("Plot_type",
+		    radioButtons("Plot_type",
 		    label = "Show 0s in plots?",
 				 choices = list("Yes" = 1,
 					        "No" = 2,
 						"In both way" = 3),
 					         selected = 1),
 
-        checkboxGroupInput("log_whether",
-	      label = "Plot in log scale?",
+        	radioButtons("log_whether",
+     		label = "Plot in log scale?",
 					  choices = list("No" = 1,
-										       "log2(expression + 1)" = 2),
-											         selected = 1),
+					       "log2(expression + 1)" = 2),
+					         selected = 1),
 				# num genes to plot
 				textInput("PlotNum", 
 				label = "Number of genes to plot (if not specified, top 100 genes will be plotted)", 
