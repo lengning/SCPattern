@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
 				 Dropout.remove=List$RMTF, Dropout.upper=List$Dropupper, LOD=List$LOD,
 				 NumPat=NumPat, Directional=Directional)	
   	print("writting output...")
-		#browser()
+		browser()
 	
 		levs <- levels(List$Cond)
 		nlevs <- nlevels(List$Cond)
@@ -120,7 +120,7 @@ shinyServer(function(input, output, session) {
  	write.csv(PPmat,file=List$exPVF)
   	write.csv(DataUse0, file=List$exExpF)
 		#for(i in 1:length(Res$Res))write.csv(Res$Res[[i]]$PP, file=paste0(List$exPVFraw,
-		#																																	 "_",levs[i],"_",levs[i+1],".csv"))
+		#		 "_",levs[i],"_",levs[i+1],".csv"))
 	
 		if(List$PlotTF){
 		PN <- NULL
