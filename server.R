@@ -15,16 +15,16 @@ shinyServer(function(input, output, session) {
 
 	In <- reactive({
 	print(input$Outdir)
-  outdir <- paste0("~/",input$Outdir[[1]][[2]],"/")
-   print(outdir)
+  	outdir <- paste0("~/",input$Outdir[[1]][[2]],"/")
+   	print(outdir)
 	
 	the.file <- input$filename$name
 	if(is.null(the.file))stop("Please upload data")
 	Sep=strsplit(the.file,split="\\.")[[1]]
-  if(Sep[length(Sep)]%in%c("xls"))a1=read.xls(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-  if(Sep[length(Sep)]=="csv")a1=read.csv(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-  if(Sep[length(Sep)]%in%c("txt","tab"))a1=read.table(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-  Data=data.matrix(a1)
+	 if(Sep[length(Sep)]%in%c("xls"))a1=read.xls(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+	 if(Sep[length(Sep)]=="csv")a1=read.csv(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+  	if(Sep[length(Sep)]%in%c("txt","tab"))a1=read.table(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+	 Data=data.matrix(a1)
 
 	Group.file <- input$ConditionVector$name
 	if(is.null(Group.file))stop("Please upload condition file")
@@ -50,8 +50,8 @@ shinyServer(function(input, output, session) {
 		Cond=factor(GroupV, levels=unique(GroupV)),# follow the order they appeared
 		test=input$test_buttons,
 		test_details=switch(input$test_buttons,"1"="DE vs. EE (undirectional)", 
-												"2"="Up vs. Down vs. EE", "3"="Up vs. Down vs. EE vs. Both direction",
-												"4"="Up vs. Down"),
+							"2"="Up vs. Down vs. EE", "3"="Up vs. Down vs. EE vs. Both direction",
+							"4"="Up vs. Down"),
 		RMTF=ifelse(input$RM_buttons=="1",TRUE,FALSE), 
 		Dropupper=input$Dropupper,
 		#PPcut=input$PPcut,
@@ -74,24 +74,24 @@ shinyServer(function(input, output, session) {
 		NumPat <- 2
 		}
 		else{
-			Directional <- TRUE
+		  Directional <- TRUE
 		  NumPat <- switch(List$test, "2"=3, "3"=4, "4"=2)  
 		}
 		
 
-    Sizes <- MedianNorm(Data)
-		if(is.na(Sizes[1])){
-		 	Sizes <- MedianNorm(Data, alternative=TRUE)
-	    message("alternative normalization method is applied")
+	 Sizes <- MedianNorm(Data)
+	if(is.na(Sizes[1])){
+		Sizes <- MedianNorm(Data, alternative=TRUE)
+		message("alternative normalization method is applied")
 	}
-    DataUse0 <- GetNormalizedMat(Data,Sizes)
+	 DataUse0 <- GetNormalizedMat(Data,Sizes)
  	 	
   	DataUse=DataUse0[which(apply(DataUse0,1,max)>List$LODNum),]
 		# main function
   			
   	Res <- SCPTest(DataUse, List$Cond, Sizes, Circular=List$Circular, maxround=List$iters,
-									 Dropout.remove=List$RMTF, Dropout.upper=List$Dropupper, LOD=List$LOD,
-									 NumPat=NumPat, Directional=Directional)	
+				 Dropout.remove=List$RMTF, Dropout.upper=List$Dropupper, LOD=List$LOD,
+				 NumPat=NumPat, Directional=Directional)	
   	print("writting output...")
 		#browser()
 	
@@ -99,7 +99,9 @@ shinyServer(function(input, output, session) {
 		nlevs <- nlevels(List$Cond)
 		if(nlevs==2){
 		PPmat <- Res$PP
-		AllEE <- "NC" 
+		AllEE <- NA
+		if("NC"%in%colnames(PPmat))AllEE <- "NC"
+		if("EE"%in%colnames(PPmat))AllEE <- "EE"
 		NotEE <- names(Res$MAP)[which(Res$MAP!=AllEE)]
 		NotEE.s <- names(sort(Res$maxPP[NotEE], decreasing=T))
 		PPmat.sig <- cbind(NotEE.s, Res$maxPP[NotEE.s], Res$MAP[NotEE.s])
@@ -114,17 +116,19 @@ shinyServer(function(input, output, session) {
 		colnames(PPmat.sig) <- c("gene", "PP most likely pattern", "most likely pattern")
 		}
 
-    write.csv(PPmat.sig,file=List$exOEF)
- 		write.csv(PPmat,file=List$exPVF)
+	write.csv(PPmat.sig,file=List$exOEF)
+ 	write.csv(PPmat,file=List$exPVF)
   	write.csv(DataUse0, file=List$exExpF)
 		#for(i in 1:length(Res$Res))write.csv(Res$Res[[i]]$PP, file=paste0(List$exPVFraw,
 		#																																	 "_",levs[i],"_",levs[i+1],".csv"))
 	
-		if(List$PlotTF)pdf(List$PlotF, height=15,width=15)
+		if(List$PlotTF){
 		PN <- NULL
 		if(List$PlotN!="")PN <- as.numeric(List$PlotN)
 		else PN <- min(100,length(NotEE.s))
 		
+		if(length(PN)>0){
+		pdf(List$PlotF, height=15,width=15)
 		par(mfrow=c(5,4))
 		for(i in 1:PN){
 		if(List$PlotType%in%c("1","3")){
@@ -138,15 +142,15 @@ shinyServer(function(input, output, session) {
 
 		if(List$PlotType%in%c("2","3")){
 			if(List$whetherLog==TRUE)VioFun(NotEE.s[i],log2(DataUse0+1), 
-						List$Cond, Dropout.remove=TRUE, ylab="log2(expression+1)",
-			      Dropout.upper=List$Dropupper, main_pre="Dropouts are not shown")
+				List$Cond, Dropout.remove=TRUE, ylab="log2(expression+1)",
+			      	Dropout.upper=List$Dropupper, main_pre="Dropouts are not shown")
 			if(List$whetherLog==FALSE)VioFun(NotEE.s[i],DataUse0, 
-						List$Cond, Dropout.remove=TRUE, ylab="expression",
-			      Dropout.upper=List$Dropupper, main_pre="Dropouts are not shown")
-		
+				List$Cond, Dropout.remove=TRUE, ylab="expression",
+				Dropout.upper=List$Dropupper, main_pre="Dropouts are not shown")
 		}
-		}	
-		if(List$PlotTF)dev.off()
+		}
+		dev.off()
+		}}
 
 	 	List=c(List, list(Sig=PPmat.sig))	
 }) 
