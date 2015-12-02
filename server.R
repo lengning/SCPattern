@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
 				 Dropout.remove=List$RMTF, Dropout.upper=List$Dropupper, LOD=List$LOD,
 				 NumPat=NumPat, Directional=Directional)	
   	print("writting output...")
-		#browser()
+		browser()
 	
 		levs <- levels(List$Cond)
 		nlevs <- nlevels(List$Cond)
