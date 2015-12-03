@@ -1,6 +1,6 @@
 library(shiny)
 library(shinyFiles)
-library(gdata)
+#library(gdata)
 library(SCPattern)
 library(EBSeq)
 
@@ -21,10 +21,11 @@ shinyServer(function(input, output, session) {
 	the.file <- input$filename$name
 	if(is.null(the.file))stop("Please upload data")
 	Sep=strsplit(the.file,split="\\.")[[1]]
-	 if(Sep[length(Sep)]%in%c("xls"))a1=read.xls(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-	 if(Sep[length(Sep)]=="csv")a1=read.csv(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-  	if(Sep[length(Sep)]%in%c("txt","tab"))a1=read.table(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
-	 Data=data.matrix(a1)
+	#if(Sep[length(Sep)]%in%c("xls"))a1=read.xls(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+	if(Sep[length(Sep)]=="csv")a1=read.csv(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+  	#if(Sep[length(Sep)]%in%c("txt","tab"))a1=read.table(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+	if(Sep[length(Sep)]!="csv")a1=read.table(input$filename$datapath,stringsAsFactors=F,header=TRUE, row.names=1)
+	Data=data.matrix(a1)
 
 	Group.file <- input$ConditionVector$name
 	if(is.null(Group.file))stop("Please upload condition file")
