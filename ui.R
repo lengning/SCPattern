@@ -12,10 +12,10 @@ shinyUI(pageWithSidebar(
   sidebarPanel(width=9,
     # file
     
-		fileInput("filename", label = "File input (support .csv, .xls, .txt, .tab)"),
+		fileInput("filename", label = "File input (support .csv, .txt, .tab)"),
 
 		# grouping vector
-		fileInput("ConditionVector", label = "Condition vector \n file name (support .csv, .xls, .txt, .tab)"),
+		fileInput("ConditionVector", label = "Condition vector \n file name (support .csv, .txt, .tab)"),
 	
 		column(3,
 
