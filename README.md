@@ -49,3 +49,7 @@ An example condition vector file **example_sc_conditionvector** could be found a
 
 Another set of expression input file and condition vector file **example_sc_data_twocond** and **example_sc_conditionvector_twocond** can also be found under https://github.com/lengning/SCPattern/tree/master/example_data/
 - In this set of files, there are 120 cells from two conditions.
+
+## Note
+
+The 'create new folder' button in the output folder selection pop-up is disfunctional right now
