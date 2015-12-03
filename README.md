@@ -14,8 +14,9 @@ SCPattern R package and its vignette could be found at https://github.com/lengni
 
 To install these two packages, in bash run 
 
-> R CMD INSTALL SCPattern_0.0.2.tar.gz
+> R CMD INSTALL SCPattern_0.0.3.tar.gz
 
+Or install locally via R GUI / Rstudio
 
 ## Run the app
 
