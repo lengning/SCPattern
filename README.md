@@ -6,9 +6,9 @@ The SCPattern GUI requires the following packages : shiny, shinyFiles, SCPattern
 
 To install the shiny packages, in R run:
 
-> install.packages("shiny")
+> install.packages('shiny')
 
-> install.packages("shinyFiles")
+> install.packages('shinyFiles')
 
 SCPattern R package and its vignette could be found at https://github.com/lengning/SCPattern/tree/master/package
 
@@ -23,7 +23,7 @@ In R, run:
 
 > library(shiny)
 
-> runGitHub("lengning/SCPattern")
+> runGitHub('lengning/SCPattern')
 
 ![Screenshot](https://github.com/lengning/SCPattern/blob/master/figs/SCPattern_screenshot.png)
 
