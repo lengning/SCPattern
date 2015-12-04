@@ -1,7 +1,7 @@
 # SCPattern
 Identify and characterize expression changes in a single cell RNA-seq experiment with ordered conditions
 
-## Installation
+## 1. Installation
 The SCPattern GUI requires the following packages : shiny, shinyFiles, SCPattern
 
 To install the shiny packages, in R run:
@@ -29,7 +29,7 @@ In R, run:
 ![Screenshot](https://github.com/lengning/SCPattern/blob/master/figs/SCPattern_screenshot.png)
 
 
-## Input files
+## 2. Input files
 
 The first input file should be the expression matrix. 
 Rows are the genes and columns are the cells.
@@ -42,20 +42,23 @@ The second input file is the condition vector. It could be csv or tab delimited 
 should be the same as the number of cells in the first input file.
 Two or more conditions are expected. 
 
-### Two conditions
+### 2.1 Two conditions
+An example input file **example_sc_data_twocond** could be found at https://github.com/lengning/SCPattern/tree/master/example_data/   
+- This file contains 1000 genes and 120 cells
 
-### Multiple conditions
+An example condition vector file **example_sc_conditionvector_twocond** could be found at https://github.com/lengning/SCPattern/tree/master/example_data/
+- This file contains 120 elements; the 120 cells are from 2 different conditions- 
 
+### 2.2 Multiple conditions
 An example input file **example_sc_data** could be found at https://github.com/lengning/SCPattern/tree/master/example_data/   
 - This file contains 1000 genes and 300 cells
-
 
 An example condition vector file **example_sc_conditionvector** could be found at https://github.com/lengning/SCPattern/tree/master/example_data/
 - This file contains 300 elements; the 300 cells are from 5 different conditions- 
 
-Another set of expression input file and condition vector file **example_sc_data_twocond** and **example_sc_conditionvector_twocond** can also be found under https://github.com/lengning/SCPattern/tree/master/example_data/
-- In this set of files, there are 120 cells from two conditions.
+## 3. Features
 
+number of iteration
 ## Note
 
 The 'create new folder' button in the output folder selection pop-up is disfunctional right now
