@@ -57,28 +57,29 @@ An example condition vector file **example_sc_conditionvector** could be found a
 - This file contains 300 elements; the 300 cells are from 5 different conditions- 
 
 ## 3. Customize options
-i. The number of iteration: Default is 5. 
-ii.	Testing types: User can choose the test type they want to perform. For simple DE identification, one can choose "DE vs. EE"; for directional test, one can choose "Up vs. Down vs. EE" or "Up vs. Down vs. EE vs. Both direction" or "Up vs. Down". Depending on what you choose, result provides posterior probabilities of all possible combinations. For example, when we have 5 time points, option "Up vs. Down" will give you 2^4=16 possible combinations.
-iii. Ignore dropouts: If you choose "Ignore", any cells with zero count would not be considered in the analysis.
-iv.	The droupout is defined as value <= a: User may set the dropout count.
-v. Lower limit of detection (max value):
-vi. Output directory, will be set as input data directory if it is empty.
-vii. Output file name for the normalized expression.
-viii. Output file name for the detected DE genes.
-ix. Output file name for the posterior probability (PP) matrix.
-x.	Output file name for the normalized expression, with OE genes removed or adjusted.
-xi.	Whether plot OE genes or not.
-xii. Whether show zeros in plots.
-xiii.	Whether take a log scale in plot.
-xiv.	Number of genes to plot. If it is not specified, top 100 genes will be included in the output plots.
-xv.	Output file name for the gene plots.
+- The number of iteration: Default is 5. 
+-	Testing types: User can choose the test type they want to perform. For simple DE identification, one can choose "DE vs. EE"; for directional test, one can choose "Up vs. Down vs. EE" or "Up vs. Down vs. EE vs. Both direction" or "Up vs. Down". Depending on what you choose, result provides posterior probabilities of all possible combinations. For example, when we have 5 time points, option "Up vs. Down" will give you 2^4=16 possible combinations.
+- Ignore dropouts: If you choose "Ignore", any cells with zero count would not be considered in the analysis.
+-	The droupout is defined as value <= a: User may set the dropout count.
+- Lower limit of detection (max value):
+- Circular
+- Output directory, will be set as input data directory if it is empty.
+- Output file name for the normalized expression.
+- Output file name for the detected DE genes.
+- Output file name for the posterior probability (PP) matrix.
+-	Output file name for the normalized expression, with OE genes removed or adjusted.
+-	Whether plot OE genes or not.
+- Whether show zeros in plots.
+-	Whether take a log scale in plot.
+-	Number of genes to plot. If it is not specified, top 100 genes will be included in the output plots.
+-	Output file name for the gene plots.
 
 ## 4. Outputs
 Three (Four) files will be generated:
-(1)	genes.csv: genes are listed with their corresponding PPs and the most likely pattern. Genes are sorted by PP.
-(2) PPs.csv: For each gene (row), PPs are shown for all possible combination of patterns (column).
-(3) normalized.csv: Normalized expression matrix with genes in row and cells in column. 
-(4) Plots.pdf: This file will be generated only when the user chooses to plot top genes. In each plot, x-axis shows conditions and y-axis shows expression. Genes are sorted by their PP. 
+-	genes.csv: genes are listed with their corresponding PPs and the most likely pattern. Genes are sorted by PP.
+- PPs.csv: For each gene (row), PPs are shown for all possible combination of patterns (column).
+- normalized.csv: Normalized expression matrix with genes in row and cells in column. 
+- Plots.pdf: This file will be generated only when the user chooses to plot top genes. In each plot, x-axis shows conditions and y-axis shows expression. Genes are sorted by their PP. 
  
 note. The 'create new folder' button in the output folder selection pop-up is disfunctional right now
 
