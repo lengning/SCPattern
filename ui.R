@@ -21,7 +21,7 @@ shinyUI(pageWithSidebar(
 
 
 				numericInput("iters",
-				label = "number of iteration",
+				label = "number of iterations",
 							value = 5),
 
 				# Normalization
@@ -34,7 +34,7 @@ shinyUI(pageWithSidebar(
 								selected = 2),								
 
 				radioButtons("RM_buttons",
-						label = "Ignor dropouts?",
+						label = "Ignore dropouts?",
 						 choices = list("Ignore" = 1,
 									 "Do not ignore" = 2),
 												 selected = 2),
