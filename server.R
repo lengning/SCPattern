@@ -110,7 +110,7 @@ shinyServer(function(input, output, session) {
 		NotEE.s <- names(sort(Res$maxPP[NotEE], decreasing=T))
 		PPmat.sig <- cbind(NotEE.s, Res$maxPP[NotEE.s], Res$MAP[NotEE.s])
 		colnames(PPmat.sig) <- c("gene", "PP most likely pattern", "most likely pattern")
-		rownames(PPmat.sig) <- NotEE
+		rownames(PPmat.sig) <- rep("", nrow(PPmat.sig))
 		}
 		if(nlevs > 2){
 		PPmat <- Res$PP.all
