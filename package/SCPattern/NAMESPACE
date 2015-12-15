@@ -1,0 +1,11 @@
+export(beta
+,BetaempH0
+,DirichletempH0
+,DirichletOptim
+,KSDir
+,KSNoDir
+,SCPairwiseDir
+,SCPairwiseNoDir
+,SCPTest
+,VioFun)
+import(EBSeq, testthat, vioplot, gtools, DirichletReg, VGAM)
