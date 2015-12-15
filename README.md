@@ -12,11 +12,15 @@ To install the shiny packages, in R run:
 
 SCPattern R package and its vignette could be found at https://github.com/lengning/SCPattern/tree/master/package
 
-To install these two packages, in bash run 
+To install SCPattern, in R run: 
 
-> R CMD INSTALL SCPattern_0.0.3.tar.gz
+> install.packages("devtools")
 
-Or install locally via R GUI / Rstudio
+> library(devtools)
+
+> install_github("lengning/SCPattern/package/SCPattern")
+
+Or install locally.
 
 ## Run the app
 
