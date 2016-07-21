@@ -88,3 +88,6 @@ Three (Four) files will be generated:
 
 The 'create new folder' button in the output folder selection pop-up is disfunctional right now
 
+## License
+This project is licensed under the terms of the Apache License 2.0
+
