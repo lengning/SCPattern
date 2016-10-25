@@ -77,14 +77,14 @@ List <- TestRes$List
 
 
 # shuffle
-Which <- sapply(1:NumCond,function(i)which(Conditions==CondLevels[i]),simplify=FALSE)
-Shuffle <- sapply(Which,function(i)sample(i,length(i)))
+Which <- seq(1:120)
+for(s in 1:dim(DataList.unlist.dvd.log)[1]) {
+Shuffle <- sample(Which,length(Which))
 ShuffleV <- unlist(Shuffle)
-DataShuffle <- DataList.unlist.dvd.log[,ShuffleV]
-
+DataShuffle[s,] <- DataList.unlist.dvd.log[s,ShuffleV]
+}
 ListRandom <- KSDir(DataShuffle, Conditions,Dropout.remove=Dropout.remove, 
 	 Dropout.upper=Dropout.upper)$List
-
 
 #################################
 # impute 0s
