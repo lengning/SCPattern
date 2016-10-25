@@ -77,6 +77,7 @@ List <- TestRes$List
 
 
 # shuffle
+DataShuffle <- c()
 Which <- seq(1:120)
 for(s in 1:dim(DataList.unlist.dvd.log)[1]) {
 Shuffle <- sample(Which,length(Which))
