@@ -77,13 +77,15 @@ List <- TestRes$List
 
 
 # shuffle
-DataShuffle <- DataList.unlist.dvd.log
-Which <- seq(1:120)
-for(s in 1:dim(DataList.unlist.dvd.log)[1]) {
+DataShuffle <- matrix(0, ncol=dim(Data)[2], nrow=100000)
+Which <- seq(1:dim(Data)[2])
+for(s in 1:100000) {
+g1 = sample(rownames(DataList.unlist.dvd.log), 1)
 Shuffle <- sample(Which,length(Which))
-ShuffleV <- unlist(Shuffle)
-DataShuffle[s,] <- DataList.unlist.dvd.log[s,ShuffleV]
+DataShuffle[s,] <- DataList.unlist.dvd.log[g1,Shuffle]
 }
+rownames(DataShuffle) <- paste0("Gene_", seq(1:10000))
+colnames(DataShuffle) <- paste0("Sample_", seq(1:120))
 ListRandom <- KSDir(DataShuffle, Conditions,Dropout.remove=Dropout.remove, 
 	 Dropout.upper=Dropout.upper)$List
 
@@ -94,11 +96,13 @@ List3D=ListRandom3D=vector("list",length(List))
 for(i in 1:length(List)){
 for(j in 1:2){
 tmp1 <- ListRandom[[i]][,j]
-Min <- min(tmp1[which(tmp1>0)])
+# Min <- min(tmp1[which(tmp1>0)])
+Min = .001
 ListRandom[[i]][which(tmp1<=0),j] <- Min
 
 tmp2 <- List[[i]][,j]
-Min2 <- min(tmp2[which(tmp2>0)])
+# Min2 <- min(tmp2[which(tmp2>0)])
+Min2 = .001
 List[[i]][which(tmp2<=0),j] <- Min2
 }
 
@@ -123,7 +127,7 @@ List3D[[i]] <- cbind(List[[i]],V2M)
 
 
 
-ParList <- sapply(1:length(List),function(i)DirichletempH0(List3D[[i]],ListRandom3D[[i]],
+ParList <- sapply(1:length(List),function(i)DirichletempH0(Data = List3D[[i]],DataShuffle = ListRandom3D[[i]],
 UpdatePi=UpdatePi,NumPat=NumPat,StateNames=StateNames,method=method, iter=maxround),
 simplify=FALSE)
 
