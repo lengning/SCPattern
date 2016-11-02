@@ -22,7 +22,7 @@ al=1, al2=1,be=10, PiIn=NULL, NumPat=3,Num=-100, iter=5, UpdatePi=T,
 method="DirReg"){
 
 DataShuffle0 <- DataShuffle
-DataShuffle[which(Data==0)] <- exp(Num)
+DataShuffle[which(DataShuffle==0, arr.ind= TRUE)[,1], which(DataShuffle==0, arr.ind= TRUE)[,2]] <- exp(Num)
 
 if(method=="optim"){
 res <- optim(c(al,be),DirichletOptim, InputPool=list(DataShuffle),lower=c(0,0,0))
