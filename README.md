@@ -18,7 +18,7 @@ To install SCPattern, in R run:
 
 > library(devtools)
 
-> install_github("lengning/SCPattern/package/SCPattern")
+> install_github("kevinrue/SCPattern/package/SCPattern")
 
 Or install locally.
 
