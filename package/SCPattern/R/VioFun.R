@@ -24,6 +24,7 @@
 VioFun=function(gene, Data, Conditions, Col=NULL, main_pre=NULL,
 			Dropout.remove=FALSE, Dropout.upper=0, namecex=1,
 			ylab="Expression", Log="", ...){
+    dots <- list(...)
 	SCMat <- Data
 	SCCond <- Conditions
 	if(!is.factor(SCCond))SCCond <- factor(SCCond, levels=unique(SCCond))
@@ -42,15 +43,27 @@ VioFun=function(gene, Data, Conditions, Col=NULL, main_pre=NULL,
   names(SCDataVio) <- paste0(levels(SCCond)," (",sapply(SCDataVio,length),")")
 
   tmpmin <- 0
-  if(Log=="y")tmpmin <- 1
-  plot(1,1,col="white",xlim=c(0,length(SCDataVio)+1),
-  ylim=c(tmpmin,(max(SCMat[gene,])+.1)*1.2),
-  xaxt="none",ylab=ylab, xlab="",main=paste(gene, mainpaste),
-  log=Log)
+  if (Log=="y"){
+      tmpmin <- 1
+  }
+  if ("ylim" %in% names(dots)){
+      ylim <- dots[["ylim"]]
+  } else {
+      ylim=c(tmpmin,(max(SCMat[gene,])+.1)*1.2)
+  }
+  plot(
+      1,1,col="white",xlim=c(0,length(SCDataVio)+1),
+      ylim = ylim,
+      xaxt="none",ylab=ylab, xlab="",main=paste(gene, mainpaste),
+      log=Log
+    )
   mtext(side=1,at=1:length(SCDataVio),paste0(names(SCDataVio)," "),
 las=3,cex=namecex)
-  for(j in 1:length(SCDataVio))
-  if(max(SCDataVio[[j]])>0)vioplot(SCDataVio[[j]],at=j, add=T,col=Col[j],colMed=NULL, ...)
+  for(j in 1:length(SCDataVio)){
+      if(max(SCDataVio[[j]])>0){
+          vioplot(SCDataVio[[j]],at=j, add=T,col=Col[j],colMed=NULL)
+      }
+  }
 }
 
 
