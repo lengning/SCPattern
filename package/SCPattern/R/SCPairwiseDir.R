@@ -77,14 +77,17 @@ List <- TestRes$List
 
 
 # shuffle
-Which <- sapply(1:NumCond,function(i)which(Conditions==CondLevels[i]),simplify=FALSE)
-Shuffle <- sapply(Which,function(i)sample(i,length(i)))
-ShuffleV <- unlist(Shuffle)
-DataShuffle <- DataList.unlist.dvd.log[,ShuffleV]
-
+DataShuffle <- matrix(0, ncol=dim(Data)[2], nrow=10000)
+Which <- seq(1:dim(Data)[2])
+for(s in 1:10000) {
+g1 = sample(rownames(DataList.unlist.dvd.log), 1)
+Shuffle <- sample(Which,length(Which))
+DataShuffle[s,] <- DataList.unlist.dvd.log[g1,Shuffle]
+}
+rownames(DataShuffle) <- paste0("Gene_", seq(1:10000))
+colnames(DataShuffle) <- paste0("Sample_", seq(1:dim(Data)[2]))
 ListRandom <- KSDir(DataShuffle, Conditions,Dropout.remove=Dropout.remove, 
 	 Dropout.upper=Dropout.upper)$List
-
 
 #################################
 # impute 0s
