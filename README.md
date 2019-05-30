@@ -1,4 +1,3 @@
-# Latest version can be found at: https://github.com/rhondabacher/Trendy
 
 # SCPattern
 Identify and characterize expression changes in a single cell RNA-seq experiment with ordered conditions
